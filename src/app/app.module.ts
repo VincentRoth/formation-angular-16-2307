@@ -3,11 +3,11 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AnimalDetailComponent } from './animal/animal-detail/animal-detail.component';
+import { AnimalModule } from './animal/animal.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, AnimalDetailComponent],
+  imports: [BrowserModule, AppRoutingModule, AnimalModule],
   providers: [],
   bootstrap: [AppComponent],
 })
