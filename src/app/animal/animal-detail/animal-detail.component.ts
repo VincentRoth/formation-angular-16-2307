@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Animal } from '../../shared/api/animal';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-animal-detail',
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './animal-detail.component.html',
   styleUrls: ['./animal-detail.component.scss'],
 })
