@@ -1,4 +1,4 @@
-<p>
+<p *ngIf="animal; else loading">
   Nom : {{ animal.name }}<br />
   Espèces : {{ animal.species }}<br />
   Vétérinaire : {{ animal.veterinarian }}<br />
@@ -7,3 +7,5 @@
   <br />
   Téléphone : {{ animal.phoneNumber | phoneFormat : "-" }}
 </p>
+
+<ng-template #loading>Chargement...</ng-template>
