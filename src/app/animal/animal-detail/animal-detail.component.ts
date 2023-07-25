@@ -1,17 +1,16 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Animal } from '../../shared/api/animal';
 import { AnimalService } from '../../shared/api/animal.service';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription, switchMap } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-animal-detail',
   templateUrl: './animal-detail.component.html',
   styleUrls: ['./animal-detail.component.scss'],
 })
-export class AnimalDetailComponent implements OnInit, OnDestroy {
-  animal: Animal;
-  private subscription: Subscription;
+export class AnimalDetailComponent implements OnInit {
+  animal$: Observable<Animal>;
 
   constructor(
     private animalService: AnimalService,
@@ -19,18 +18,10 @@ export class AnimalDetailComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.subscription = this.activatedRoute.paramMap
-      .pipe(
-        switchMap((paramMap) =>
-          this.animalService.get(Number(paramMap.get('id')))
-        )
+    this.animal$ = this.activatedRoute.paramMap.pipe(
+      switchMap((paramMap) =>
+        this.animalService.get(Number(paramMap.get('id')))
       )
-      .subscribe((data) => {
-        this.animal = data;
-      });
-  }
-
-  ngOnDestroy(): void {
-    this.subscription?.unsubscribe();
+    );
   }
 }
