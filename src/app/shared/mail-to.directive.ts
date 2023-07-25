@@ -1,13 +1,14 @@
-import { AfterViewInit, Directive, ElementRef } from '@angular/core';
+import { Directive, ElementRef, Input, OnInit } from '@angular/core';
 
 @Directive({
   selector: 'a[appMailTo]',
 })
-export class MailToDirective implements AfterViewInit {
+export class MailToDirective implements OnInit {
+  @Input('appMailTo') email: string;
+
   constructor(private element: ElementRef<HTMLAnchorElement>) {}
 
-  ngAfterViewInit(): void {
-    const email = this.element.nativeElement.innerText;
-    this.element.nativeElement.href = `mailto:${email}`;
+  ngOnInit(): void {
+    this.element.nativeElement.href = `mailto:${this.email}`;
   }
 }
