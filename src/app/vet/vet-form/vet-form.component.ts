@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { VetService } from '../../shared/api/vet.service';
 import { Vet } from '../../shared/api/vet';
@@ -32,17 +32,25 @@ export class VetFormComponent implements OnInit {
   }
 
   onSubmit(): void {
-    const value: Vet = this.vetForm.getRawValue();
-    this.vetService.save(value).subscribe(() => {
-      this.router.navigate(['/veterinarians']);
-    });
+    if (this.vetForm.valid) {
+      const value: Vet = this.vetForm.getRawValue();
+      this.vetService.save(value).subscribe(() => {
+        this.router.navigate(['/veterinarians']);
+      });
+    }
   }
 
   private initForm(model?: Vet): void {
     this.vetForm = new FormGroup({
       id: new FormControl<number>(model?.id),
-      firstName: new FormControl<string>(model?.firstName || ''),
-      lastName: new FormControl<string>(model?.lastName || ''),
+      firstName: new FormControl<string>(
+        model?.firstName || '',
+        Validators.required
+      ),
+      lastName: new FormControl<string>(model?.lastName || '', [
+        Validators.required,
+        Validators.minLength(4),
+      ]),
     });
   }
 }
