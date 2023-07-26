@@ -20,5 +20,16 @@
     Champ obligatoire
   </p>
 
+  <ng-container
+    formArrayName="phoneNumbers"
+    *ngFor="let control of phoneNumbers.controls; let index = index"
+  >
+    <input [formControlName]="index" />
+    <button type="button" (click)="removePhone(index)">Sup</button>
+    <br />
+  </ng-container>
+  <button type="button" (click)="addPhone()">Nouveau téléphone</button>
+  <br />
+
   <button type="submit">Envoyer</button>
 </form>
