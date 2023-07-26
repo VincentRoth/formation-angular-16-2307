@@ -1,9 +1,27 @@
-<form (ngSubmit)="onSubmit()" *ngIf="animal">
+<form (ngSubmit)="onSubmit()" *ngIf="animal" #animalForm="ngForm">
   <label for="name">Nom</label>
-  <input id="name" name="name" [(ngModel)]="animal.name" /><br />
+  <input
+    id="name"
+    name="name"
+    [(ngModel)]="animal.name"
+    required
+    #nameCtrl="ngModel"
+  /><br />
+  <p *ngIf="animalForm.submitted && nameCtrl.hasError('required')">
+    Champ obligatoire
+  </p>
 
   <label for="species">Expèce</label>
-  <input id="species" name="species" [(ngModel)]="animal.species" /><br />
+  <input
+    id="species"
+    name="species"
+    [(ngModel)]="animal.species"
+    required
+    #speciesCtrl="ngModel"
+  /><br />
+  <p *ngIf="animalForm.submitted && speciesCtrl.hasError('required')">
+    Champ obligatoire
+  </p>
 
   <label for="veterinarian">Vétérinaire</label>
   <input
@@ -13,7 +31,16 @@
   /><br />
 
   <label for="email">Email</label>
-  <input id="email" name="email" [(ngModel)]="animal.email" /><br />
+  <input
+    id="email"
+    name="email"
+    [(ngModel)]="animal.email"
+    email
+    #emailCtrl="ngModel"
+  /><br />
+  <p *ngIf="animalForm.submitted && emailCtrl.hasError('email')">
+    Email invalide
+  </p>
 
   <label for="phoneNumber">Téléphone</label>
   <input
