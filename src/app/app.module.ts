@@ -9,7 +9,7 @@ import { TimeInterceptor } from './shared/time.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, AppRoutingModule, AnimalModule, HttpClientModule],
+  imports: [BrowserModule, AnimalModule, AppRoutingModule, HttpClientModule],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TimeInterceptor, multi: true },
   ],

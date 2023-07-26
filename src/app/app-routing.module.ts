@@ -7,6 +7,7 @@ const routes: Routes = [
     path: 'veterinarians',
     loadChildren: () => import('./vet/vet.module').then((mod) => mod.VetModule),
   },
+  { path: '**', redirectTo: 'animals' },
 ];
 
 @NgModule({
