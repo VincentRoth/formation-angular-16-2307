@@ -5,6 +5,7 @@ import { AnimalDetailComponent } from './animal-detail/animal-detail.component';
 import { AnimalComponent } from './animal.component';
 import { hasRightGuard } from '../shared/auth/has-right.guard';
 import { Right } from '../shared/auth/right';
+import { AnimalFormComponent } from './animal-form/animal-form.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,16 @@ const routes: Routes = [
         path: '',
         component: AnimalListComponent,
         title: 'Listes des animaux',
+      },
+      {
+        path: 'new',
+        component: AnimalFormComponent,
+        title: "Création d'un fiche",
+      },
+      {
+        path: 'edit/:id',
+        component: AnimalFormComponent,
+        title: "Modification d'un fiche",
       },
       {
         path: ':id',

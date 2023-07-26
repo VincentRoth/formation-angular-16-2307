@@ -1,3 +1,4 @@
 {{ model.name }}, {{ model.species }}
 <a [routerLink]="[model.id]">Voir</a>
+<a [routerLink]="['edit', model.id]">Modifier</a>
 <button (click)="onDelete()">Supprimer</button>
