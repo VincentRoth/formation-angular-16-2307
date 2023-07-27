@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AnimalListComponent } from './animal-list.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { AnimalItemComponent } from '../animal-item/animal-item.component';
 
 describe('AnimalListComponent', () => {
   let component: AnimalListComponent;
@@ -8,7 +10,8 @@ describe('AnimalListComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AnimalListComponent]
+      imports: [HttpClientTestingModule],
+      declarations: [AnimalListComponent, AnimalItemComponent],
     });
     fixture = TestBed.createComponent(AnimalListComponent);
     component = fixture.componentInstance;

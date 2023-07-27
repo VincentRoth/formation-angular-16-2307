@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { VetFormComponent } from './vet-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('VetFormComponent', () => {
   let component: VetFormComponent;
@@ -8,7 +11,12 @@ describe('VetFormComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [VetFormComponent]
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule,
+        ReactiveFormsModule,
+      ],
+      declarations: [VetFormComponent],
     });
     fixture = TestBed.createComponent(VetFormComponent);
     component = fixture.componentInstance;
