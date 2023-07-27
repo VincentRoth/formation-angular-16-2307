@@ -5,7 +5,7 @@
   Commentaire : {{ animal.comment }}<br />
   Email : <a [appMailTo]="animal.email">{{ animal.email }}</a>
   <br />
-  Téléphone : {{ animal.phoneNumber | phoneFormat : "-" }}
+  Téléphone : {{ animal?.phoneNumber | phoneFormat : "-" }}
 </p>
 
 <ng-template #loading>Chargement...</ng-template>
