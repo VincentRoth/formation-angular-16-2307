@@ -4,32 +4,53 @@
   (ngSubmit)="onSubmit()"
   #ngForm="ngForm"
 >
-  <label for="lastName">Nom</label>
-  <input id="lastName" formControlName="lastName" /><br />
-  <p *ngIf="ngForm.submitted && vetForm.hasError('required', 'lastName')">
-    Champ obligatoire
-  </p>
-  <p *ngIf="ngForm.submitted && vetForm.hasError('minlength', 'lastName')">
-    Taille minimale requise
-    {{ vetForm.get("lastName").errors["minlength"].requiredLength }}
-  </p>
+  <mat-form-field>
+    <mat-label>Nom</mat-label>
+    <input matInput formControlName="lastName" /><br />
+    <mat-error
+      *ngIf="ngForm.submitted && vetForm.hasError('required', 'lastName')"
+    >
+      Champ obligatoire
+    </mat-error>
+    <mat-error
+      *ngIf="ngForm.submitted && vetForm.hasError('minlength', 'lastName')"
+    >
+      Taille minimale requise
+      {{ vetForm.get("lastName").errors["minlength"].requiredLength }}
+    </mat-error>
+  </mat-form-field>
 
-  <label for="firstName">Prénom</label>
-  <input id="firstName" formControlName="firstName" /><br />
-  <p *ngIf="ngForm.submitted && vetForm.hasError('required', 'firstName')">
-    Champ obligatoire
-  </p>
+  <mat-form-field>
+    <mat-label>Prénom</mat-label>
+    <input matInput id="firstName" formControlName="firstName" /><br />
+    <mat-error
+      *ngIf="ngForm.submitted && vetForm.hasError('required', 'firstName')"
+    >
+      Champ obligatoire
+    </mat-error>
+  </mat-form-field>
 
   <ng-container
     formArrayName="phoneNumbers"
     *ngFor="let control of phoneNumbers.controls; let index = index"
   >
-    <input [formControlName]="index" />
-    <button type="button" (click)="removePhone(index)">Sup</button>
-    <br />
+    <mat-form-field>
+      <input matInput [formControlName]="index" />
+      <button
+        matSuffix
+        mat-icon-button
+        color="warn"
+        type="button"
+        (click)="removePhone(index)"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-form-field>
   </ng-container>
-  <button type="button" (click)="addPhone()">Nouveau téléphone</button>
+  <button mat-button color="accent" type="button" (click)="addPhone()">
+    Nouveau téléphone
+  </button>
   <br />
 
-  <button type="submit">Envoyer</button>
+  <button mat-button color="primary" type="submit">Envoyer</button>
 </form>

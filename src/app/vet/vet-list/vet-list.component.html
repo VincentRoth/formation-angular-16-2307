@@ -1,8 +1,11 @@
-<ul>
-  <li *ngFor="let vet of vets">
-    {{ vet.firstName }} {{ vet.lastName }}
-    <a [routerLink]="[vet.id]">Voir</a>
-    <a [routerLink]="['edit', vet.id]">Modifier</a>
-    <button (click)="onDeleteItem(vet)">Supprimer</button>
-  </li>
-</ul>
+<mat-list>
+  <ng-container *ngFor="let vet of vets; let last = last">
+    <mat-list-item>
+      {{ vet.firstName }} {{ vet.lastName }}
+      <a mat-button [routerLink]="[vet.id]">Voir</a>
+      <a mat-button [routerLink]="['edit', vet.id]">Modifier</a>
+      <button mat-button (click)="onDeleteItem(vet)">Supprimer</button>
+    </mat-list-item>
+    <mat-divider *ngIf="!last"></mat-divider>
+  </ng-container>
+</mat-list>
